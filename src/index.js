@@ -1,56 +1,33 @@
 function areIntersected(rect1, rect2)
 {
-    return (
-            (
-                (rect1.left > rect2.left && rect1.left < rect2.left+rect2.width)||
-                (rect1.left+rect1.width > rect2.left && rect1.left+rect1.width < rect2.left+rect2.width)       
-            )
-            &&
-            (
-                (rect1.top > rect2.top && rect1.top < rect2.top+rect2.height)|| 
-                (rect1.top+rect1.height > rect2.top && rect1.top+rect1.height < rect2.top+rect2.height)
-            )
-            ||
-            (
-                (
-                    (rect2.left > rect1.left && rect2.left < rect1.left+rect1.width)||
-                    (rect2.left+rect2.width > rect1.left && rect2.left+rect2.width < rect1.left+rect1.width)
-                )
-                &&
-                (
-                    (rect2.top>rect1.top && rect2.top<rect1.top+rect1.height)||
-                    (rect2.top+rect2.height>rect1.top && rect2.top+rect2.height<rect1.top+rect1.height)
-                )
-            )
-            ||
-            (
-                (
-                    (
-                        (rect1.left > rect2.left && rect1.left < rect2.left+rect2.width)||
-                        (rect1.left+rect1.width > rect2.left && rect1.left+rect1.width < rect2.left+rect2.width)
-                    )
-                 &&
-                    (
-                        (rect2.top > rect1.top && rect2.top < rect1.top+rect1.height)||
-                        (rect2.top+rect2.height > rect1.top && rect2.top+rect2.height < rect1.top+rect1.height)
-                    )
-                )
-                ||
-                (
-                    (
-                        (rect2.left > rect1.left && rect2.left <rect2.left+rect1.width)||
-                        (rect2.left+rect2.width > rect1.left && rect2.left+rect2.width <rect1.left+rect1.width))
-                 &&
-                    (
-                        (rect1.top > rect2.top && rect1.top < rect2.top+rect2.height)||
-                        (rect1.top+rect1.height > rect2.top && rect1.top+rect1.height < rect2.top+rect2.height)))
-            )
-            ||
-            (
-                rect1.left == rect2.left && rect1.top == rect2.top && rect1.height == rect2.height && rect1.width == rect2.width
-            )
-        ); 
+   
+    var right1, bottom1, right2, bottom2, vertical, horizontal;
+    
+    right1 = rect1.left + rect1.width;
+    right2 = rect2.left + rect2.width;
+    bottom1 = rect1.top + rect1.height;
+    bottom2 = rect2.top + rect2.height;
+    
+    if (rect1.top < rect2.top)
+    {
+        vertical = bottom1 > rect2.top;
+    }
+    else
+    {
+        vertical = rect1.top < bottom2;
+    }
+    
+    if (rect1.left < rect2.left)
+    {
+        horizontal = right1 > rect2.left;        
+    }
+    else
+    {
+        horizontal = rect1.left < right2;
+    }
         
+     
+    return vertical && horizontal;        
 }
 
 
