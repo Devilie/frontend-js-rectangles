@@ -125,4 +125,5 @@ function filterVisible(rect, rectArr)
         }
         
     });
+    return visibleRectArray;
 }
